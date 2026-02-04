@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMGTechSolution | Mahamad Gouse</title>
+	<link rel="icon" type="image/x-icon" href="./logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a6491);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff8a00, #da1b60, #6a11cb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, #ff8a00, #da1b60, #6a11cb);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin: 25px 0 40px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 15px;
+            padding: 15px 5px;
+            min-width: 100px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            background: linear-gradient(to bottom, #ffffff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .subscription {
+            margin: 40px 0 30px;
+        }
+
+        .subscription p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .form-container input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-container input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-container input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.3);
+        }
+
+        .form-container button {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0 30px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
+        }
+
+        .form-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 117, 252, 0.6);
+        }
+
+        .form-container button:active {
+            transform: translateY(1px);
+        }
+
+        .social-links {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .social-links a.facebook:hover { background: #3b5998; }
+        .social-links a.twitter:hover { background: #1da1f2; }
+        .social-links a.instagram:hover { background: #e1306c; }
+        .social-links a.linkedin:hover { background: #0077b5; }
+
+        .copyright {
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notification {
+            background: rgba(40, 167, 69, 0.15);
+            border-left: 4px solid #28a745;
+            color: #a3e4a3;
+            padding: 12px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px auto;
+            max-width: 500px;
+            display: none;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 2.3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                margin: 20px 0 30px;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .countdown-item {
+                min-width: 85px;
+                padding: 12px 5px;
+            }
+            
+            .form-container {
+                flex-direction: column;
+            }
+            
+            .form-container input,
+            .form-container button {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown {
+                gap: 8px;
+            }
+            
+            .countdown-item {
+                min-width: 75px;
+                padding: 10px 5px;
+            }
+            
+            .countdown-number {
+                font-size: 1.7rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.85rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Animation for the logo gradient */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo {
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <h1 class="logo">SMG Tech Solutions</h1>
+        <p class="subtitle">We're building something extraordinary. Be the first to know when we launch our revolutionary platform that will transform how you experience digital solutions.</p>
+        
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        
+        <div class="notification" id="notification">
+            Thank you! We'll notify you when we launch.
+        </div>
+        
+        <div class="subscription">
+            <p>Be the first to know when we launch. Subscribe to our mailing list for exclusive updates and early access.</p>
+            <div class="form-container">
+                <input type="email" id="email" placeholder="Enter your email address" required>
+                <button id="subscribe-btn">Notify Me</button>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mahamad-gouse/" class="linkedin" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 Nexus Platform. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles in the background
+        document.addEventListener('DOMContentLoaded', () => {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 5px and 25px
+                const size = Math.random() * 20 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Add floating animation to style
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes float {
+                    0% {
+                        transform: translateY(0) translateX(0);
+                        opacity: ${Math.random() * 0.3 + 0.1};
+                    }
+                    50% {
+                        opacity: ${Math.random() * 0.5 + 0.3};
+                    }
+                    100% {
+                        transform: translateY(-100px) translateX(${Math.random() * 100 - 50}px);
+                        opacity: ${Math.random() * 0.3 + 0.1};
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Countdown timer setup
+            // Set launch date to March 15, 2026 at 9:00 AM UTC
+            const launchDate = new Date("March 15, 2026 09:00:00 UTC").getTime();
+            
+            const countdown = () => {
+                const now = new Date().getTime();
+                const distance = launchDate - now;
+                
+                if (distance < 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                // Calculate time components
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Update the countdown
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            };
+            
+            // Update countdown every second
+            countdown();
+            setInterval(countdown, 1000);
+            
+            // Form submission handling
+            document.getElementById('subscribe-btn').addEventListener('click', () => {
+                const emailInput = document.getElementById('email');
+                const notification = document.getElementById('notification');
+                
+                if (emailInput.value.trim() === '') {
+                    emailInput.style.borderColor = '#ff4d4d';
+                    setTimeout(() => {
+                        emailInput.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    }, 2000);
+                    return;
+                }
+                
+                // Simple email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    emailInput.style.borderColor = '#ff4d4d';
+                    setTimeout(() => {
+                        emailInput.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    }, 2000);
+                    return;
+                }
+                
+                // Show notification
+                notification.style.display = 'block';
+                emailInput.value = '';
+                
+                // Hide notification after 5 seconds
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 5000);
+                
+                // In a real implementation, you would send the email to your server here
+                console.log('Email submitted:', emailInput.value);
+            });
+            
+            // Allow form submission with Enter key
+            document.getElementById('email').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    document.getElementById('subscribe-btn').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
